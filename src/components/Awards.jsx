@@ -6,12 +6,12 @@ import aifest from '../assets/aifest.jpg';
 import natpsc from '../assets/natpsc.jpg';
 import regpsc from '../assets/regpsc.jpg';
 import korea from '../assets/korea.jpg';
-import CardSwap, { Card } from './CardSwap';
 
 
 function Awards() {
   const [selectedAward, setSelectedAward] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
@@ -37,6 +37,19 @@ function Awards() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  // Auto-cycle through awards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % awards.length);
+        setIsTransitioning(false);
+      }, 300); // Half of transition duration
+    }, 4500); // Change every 4.5 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const awards = [
@@ -135,23 +148,15 @@ function Awards() {
             <p className="award-details-text">{awards[currentIndex].details}</p>
           </div>
 
-          {/* Right side - CardSwap with only images */}
+          {/* Right side - Single image with fade animation */}
           <div className="award-card-side">
-            <CardSwap
-              cardDistance={50}
-              verticalDistance={70}
-              delay={4500}
-              pauseOnHover={true}
-              onIndexChange={setCurrentIndex}
-            >
-              {awards.map((award) => (
-                <Card key={award.id}>
-                  <div className="award-card-image-only">
-                    <img src={award.image} alt={award.title} className="award-image" />
-                  </div>
-                </Card>
-              ))}
-            </CardSwap>
+            <div className={`award-image-container-single ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
+              <img 
+                src={awards[currentIndex].image} 
+                alt={awards[currentIndex].title} 
+                className="award-image-single" 
+              />
+            </div>
           </div>
         </div>
       </div>

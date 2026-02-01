@@ -205,6 +205,13 @@
     font-size: 0.9rem;
     flex-wrap: wrap;
     gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .see-more-container {
+    position: static;
+    transform: none;
+    margin-top: 1.5rem;
   }
 
   .see-more-btn {
@@ -237,6 +244,7 @@
   .home-links {
     font-size: 0.85rem;
     gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
   
   .home-content {
@@ -244,7 +252,9 @@
   }
 
   .see-more-container {
-    bottom: 2rem;
+    position: static;
+    transform: none;
+    margin-top: 1rem;
   }
 
   .see-more-btn {

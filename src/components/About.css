@@ -221,9 +221,14 @@
     gap: 2rem;
   }
 
+  .about-text {
+    text-align: center;
+  }
+
   .about-paragraph {
     font-size: 1rem;
     line-height: 1.7;
+    text-align: center;
   }
 
   .tech-icons-section {
@@ -232,6 +237,7 @@
 
   .tech-icons-title {
     font-size: 1.1rem;
+    text-align: center;
   }
 
   .tech-icons-grid {
