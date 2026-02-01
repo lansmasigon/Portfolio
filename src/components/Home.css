@@ -33,7 +33,7 @@
 .home-name {
   font-size: 5rem;
   font-weight: 450;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   color: #ffffff;
   letter-spacing: 0.02em;
   animation: fadeInUp 1s ease-out;
@@ -68,12 +68,11 @@
 
 /* See More Button */
 .see-more-container {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  margin-top: 2rem;
   z-index: 2;
   animation: fadeInUp 1.4s ease-out;
+  width: auto;
 }
 
 .see-more-btn {
@@ -205,13 +204,17 @@
     font-size: 0.9rem;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
+    justify-content: center;
   }
 
   .see-more-container {
     position: static;
     transform: none;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    left: auto;
+    bottom: auto;
+    width: 100%;
   }
 
   .see-more-btn {
@@ -244,7 +247,8 @@
   .home-links {
     font-size: 0.85rem;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
+    justify-content: center;
   }
   
   .home-content {
@@ -254,7 +258,10 @@
   .see-more-container {
     position: static;
     transform: none;
-    margin-top: 1rem;
+    margin-top: 1.8rem;
+    left: auto;
+    bottom: auto;
+    width: 100%;
   }
 
   .see-more-btn {

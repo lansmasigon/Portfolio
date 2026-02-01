@@ -33,11 +33,11 @@ export default function Home() {
           <a href="#" className="home-link">UI/UX</a>
           <span className="link-separator">·</span>
         </div>
-      </div>
-
-      {/* See More Button */}
-      <div className="see-more-container">
-        <a href="#about" className="see-more-btn">See More</a>
+        
+        {/* See More Button */}
+        <div className="see-more-container">
+          <a href="#about" className="see-more-btn">See More</a>
+        </div>
       </div>
 
       {/* Sticky Social Icons */}
