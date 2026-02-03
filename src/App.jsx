@@ -5,6 +5,7 @@ import Projects from './components/Projects'
 import Awards from './components/Awards'
 import TechStack from './components/TechStack'
 import Footer from './components/Footer'
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Projects />
       <Awards />
       <Footer />
+      <Analytics />
     </div>
   )
 }
