@@ -1,6 +1,6 @@
 import './Home.css';
 import heroHead from '../assets/Masigon_LanceGabriel.png';
-import { Rocket, Facebook, Mail, Github, Linkedin } from 'lucide-react';
+import { Facebook, Mail, Github, Linkedin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -30,12 +30,8 @@ export default function Home() {
       )}
 
       <div className="home-shell">
-        <div className="home-ornament home-ornament-rocket" aria-hidden="true">
-          <Rocket className="home-ornament-icon" />
-        </div>
-
         <div className="home-socials" aria-label="Social links">
-            <a href="#contact" className="contact-pill">Contact Me</a>
+          <a href="#about" className="contact-pill">Contact Me</a>
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <Facebook size={16} />
           </a>
@@ -52,9 +48,8 @@ export default function Home() {
 
         <nav className="home-nav" aria-label="Primary">
           <a href="#about">About</a>
-          <a href="#testimonials">Projects</a>
-          <a href="#projects">Awards</a>
-          <a href="#contact">Contact</a>
+          <a href="#projects">Projects</a>
+          <a href="#awards">Awards</a>
         </nav>
 
         <h1 className="hero-title" aria-label="Hi, I am Lance">
@@ -70,9 +65,7 @@ export default function Home() {
 
           <img src={heroHead} alt="Lance Gabriel Masigon" className="hero-head" />
 
-          <div className="hero-right">
-        
-          </div>
+          <div className="hero-right"></div>
         </div>
       </div>
     </section>
