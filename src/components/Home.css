@@ -63,52 +63,6 @@
   opacity: 0;
 }
 
-.home-ornament {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  transform-style: preserve-3d;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.home-ornament::after {
-  content: '';
-  position: absolute;
-  inset: auto 16% -16%;
-  height: 26%;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.5);
-  filter: blur(8px);
-  transform: translateZ(-1px);
-}
-
-.home-ornament-icon {
-  width: 56%;
-  height: 56%;
-  color: #ffffff;
-  stroke-width: 1.9;
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7));
-}
-
-.home-ornament-rocket {
-  left: clamp(0.35rem, 2vw, 1.2rem);
-  top: 42%;
-  width: clamp(48px, 5vw, 66px);
-  height: clamp(48px, 5vw, 66px);
-  animation: rocketFloat 3.2s ease-in-out infinite;
-}
-
-@keyframes rocketFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-14deg) rotateX(9deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(-10deg) rotateX(9deg);
-  }
-}
 
 .home-socials {
   position: absolute;
@@ -140,7 +94,7 @@
 
 .home-nav {
   position: relative;
-  z-index: 5;
+  z-index: 40;
   display: flex;
   justify-content: center;
   gap: clamp(1rem, 2.6vw, 2.6rem);
@@ -164,6 +118,7 @@
 .hero-title {
   position: relative;
   z-index: 5;
+  pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -230,7 +185,7 @@
   height: 44px;
   border-radius: 999px;
   border: none;
-  background: none;
+  background: linear-gradient(90deg, #d11bff, #ff6d62);
   color: #f9faff;
   text-decoration: none;
   text-transform: uppercase;
@@ -240,16 +195,12 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.contact-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(210, 59, 192, 0.35);
+}
+
 @media (max-width: 980px) {
-  .home-ornament {
-    opacity: 0.85;
-  }
-
-  .home-ornament-rocket {
-    top: 34%;
-    left: 0.3rem;
-  }
-
   .home-socials {
     right: 0.25rem;
     bottom: 0.15rem;
@@ -299,10 +250,6 @@
 }
 
 @media (max-width: 620px) {
-  .home-ornament {
-    display: none;
-  }
-
   .home-nav {
     gap: 0.8rem;
     flex-wrap: wrap;
@@ -321,4 +268,11 @@
     font-size: 0.62rem;
     letter-spacing: 0.08em;
   }
+
+  .home-socials {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 210px;
+  }
 }
+
