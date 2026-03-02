@@ -1,6 +1,6 @@
 .footer-section {
-  background: #000000;
-  color: #ffffff;
+  background: #F5F3F3;
+  color: #1944F1;
   padding: 3rem 2rem 2rem;
   font-family: 'Poppins', sans-serif;
 }
@@ -15,14 +15,14 @@
 .footer-title {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #318CE7;
+  color: #1944F1;
   font-weight: 700;
 }
 
 .footer-subtitle {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: #318CE7;
+  color: #1944F1;
   font-weight: 600;
 }
 
@@ -30,6 +30,7 @@
   line-height: 1.6;
   opacity: 0.9;
   font-size: 1rem;
+  color: rgba(25, 68, 241, 0.75);
 }
 
 .footer-nav {
@@ -43,7 +44,7 @@
 }
 
 .footer-nav a {
-  color: #ffffff;
+  color: rgba(25, 68, 241, 0.75);
   text-decoration: none;
   opacity: 0.8;
   transition: all 0.3s ease;
@@ -52,7 +53,7 @@
 
 .footer-nav a:hover {
   opacity: 1;
-  color: #318CE7;
+  color: #1944F1;
   transform: translateX(5px);
 }
 
@@ -66,6 +67,7 @@
   margin-bottom: 0.8rem;
   opacity: 0.9;
   font-size: 0.95rem;
+  color: rgba(25, 68, 241, 0.75);
 }
 
 .social-links {
@@ -80,14 +82,14 @@
   gap: 0.75rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  color: #ffffff;
+  color: rgba(25, 68, 241, 0.75);
   opacity: 0.9;
   padding: 0.5rem 0;
 }
 
 .social-link:hover {
   opacity: 1;
-  color: #318CE7;
+  color: #1944F1;
   transform: translateX(5px);
 }
 
@@ -105,17 +107,18 @@
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(25, 68, 241, 0.15);
 }
 
 .footer-bottom p {
   margin: 0.5rem 0;
   opacity: 0.8;
   font-size: 0.9rem;
+  color: rgba(25, 68, 241, 0.75);
 }
 
 .footer-credits {
-  color: #318CE7;
+  color: #1944F1;
 }
 
 /* Responsive Design */

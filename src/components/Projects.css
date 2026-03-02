@@ -1,5 +1,5 @@
 .projects-section {
-  background: #ffffff;
+  background: #F5F3F3;
   font-family: 'Poppins', sans-serif;
   padding: 4.5rem 1.5rem 5rem;
   min-height: 100vh;
@@ -11,16 +11,16 @@
 .projects-shell {
   max-width: 1180px;
   margin: 0 auto;
-  background: #ececec;
+  background: #eceaea;
   border-radius: 28px;
   padding: 3.5rem 2rem 3rem;
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 30px 60px rgba(25, 68, 241, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .projects-section .section-title {
-  color: #1f1f1f;
+  color: #1944F1;
   font-size: clamp(4rem, 2.2vw + 1rem, 3.4rem);
   font-weight: 700;
   margin: 0;
@@ -28,7 +28,7 @@
 }
 
 .projects-hero-copy {
-  color: #2b2b2b;
+  color: #1944F1;
   font-size: clamp(1.8rem, 3vw + 0.6rem, 4rem);
   font-weight: 700;
   line-height: 1.04;
@@ -54,11 +54,11 @@
   width: clamp(170px, 20vw, 240px);
   transform: translateY(var(--card-y)) rotate(var(--card-r));
   z-index: var(--card-z);
-  background: #ffffff;
+  background: #F5F3F3;
   border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(25, 68, 241, 0.1);
   padding: 0.45rem;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 26px rgba(25, 68, 241, 0.12);
   cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   margin-left: -20px;
@@ -66,7 +66,7 @@
 
 .project-showcase-card:hover {
   transform: translateY(calc(var(--card-y) - 12px)) rotate(var(--card-r));
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 18px 34px rgba(25, 68, 241, 0.18);
 }
 
 .project-showcase-card:first-child {
@@ -74,9 +74,9 @@
 }
 
 .project-showcase-image-wrap {
-  background: linear-gradient(180deg, #f8f8f8, #ededed);
+  background: linear-gradient(180deg, #eceaea, #e2e0e0);
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(25, 68, 241, 0.07);
   height: clamp(124px, 13vw, 168px);
   display: flex;
   align-items: center;
@@ -100,8 +100,8 @@
 }
 
 .project-pill {
-  background: #000000;
-  color: #ffffff;
+  background: #1944F1;
+  color: #F5F3F3;
   border-radius: 999px;
   padding: 0.16rem 0.55rem;
   font-size: 0.67rem;
@@ -111,7 +111,7 @@
 
 .project-showcase-title {
   margin: 0;
-  color: #222222;
+  color: #1944F1;
   font-size: 0.78rem;
   font-weight: 600;
   white-space: nowrap;
@@ -139,7 +139,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(25, 68, 241, 0.16);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,8 +159,8 @@
 }
 
 .modal-content {
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
+  background: #F5F3F3;
+  border: 1px solid rgba(25, 68, 241, 0.15);
   border-radius: 12px;
   max-width: 900px;
   width: 100%;
@@ -184,9 +185,9 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #333;
-  color: #ffffff;
+  background: rgba(25, 68, 241, 0.08);
+  border: 1px solid rgba(25, 68, 241, 0.2);
+  color: #1944F1;
   font-size: 1.1rem;
   width: 40px;
   height: 40px;
@@ -201,7 +202,8 @@
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #1944F1;
+  color: #F5F3F3;
   transform: rotate(90deg);
 }
 
@@ -210,7 +212,7 @@
   height: 400px;
   overflow: hidden;
   border-radius: 12px 12px 0 0;
-  background: #0a0a0a;
+  background: #eceaea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,32 +232,32 @@
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #1944F1;
 }
 
 .modal-description {
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  color: #888;
+  color: rgba(25, 68, 241, 0.7);
 }
 
 .modal-details {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid #1a1a1a;
+  background: rgba(25, 68, 241, 0.04);
+  border: 1px solid rgba(25, 68, 241, 0.12);
   padding: 1.5rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
 }
 
 .modal-details h4 {
-  color: #318ce7;
+  color: #1944F1;
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
 }
 
 .modal-details p {
-  color: #aaa;
+  color: rgba(25, 68, 241, 0.7);
   line-height: 1.6;
 }
 
@@ -264,7 +266,7 @@
 }
 
 .modal-technologies h4 {
-  color: #318ce7;
+  color: #1944F1;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
@@ -276,9 +278,9 @@
 }
 
 .tech-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #333;
-  color: #ffffff;
+  background: rgba(25, 68, 241, 0.06);
+  border: 1px solid rgba(25, 68, 241, 0.18);
+  color: #1944F1;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
   font-size: 0.9rem;
@@ -287,8 +289,8 @@
 
 .modal-link {
   display: inline-block;
-  background: linear-gradient(135deg, #318ce7, #0d24a3);
-  color: #ffffff;
+  background: #1944F1;
+  color: #F5F3F3;
   padding: 1rem 2rem;
   border-radius: 30px;
   text-decoration: none;
@@ -298,7 +300,8 @@
 
 .modal-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(49, 140, 231, 0.5);
+  background: #0f33d4;
+  box-shadow: 0 10px 30px rgba(25, 68, 241, 0.3);
 }
 
 @media (max-width: 992px) {
