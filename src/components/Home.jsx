@@ -1,5 +1,6 @@
 import './Home.css';
 import heroHead from '../assets/Masigon_LanceGabriel.png';
+import homebg from '../assets/homebg.png';
 import { Facebook, Mail, Github, Linkedin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <section id="home" className={`home-section ${introPhase === 'show' ? 'intro-active' : ''}`}>
+      <img src={homebg} alt="" className="home-bg-img" aria-hidden="true" />
       {introPhase !== 'done' && (
         <div className={`home-intro ${introPhase === 'morph' ? 'home-intro--morph' : ''}`} aria-hidden="true">
           <div className="home-intro-title">HI, I'M LANCE</div>
