@@ -10,7 +10,6 @@
   border-radius: 0 0 38px 38px;
   margin: 0 0.75rem;
   position: relative;
-  transition: border-radius 0.5s ease, transform 0.5s ease;
 }
 
 .home-bg-img {
@@ -26,20 +25,13 @@
   z-index: 0;
 }
 
-.home-section.intro-active .home-shell {
-  opacity: 0;
-  transform: translateY(18px) scale(0.995);
-}
-
+/* GSAP controls visibility — no CSS opacity transitions needed */
 .home-shell {
   position: relative;
   z-index: 1;
   width: min(1240px, 96vw);
   height: 100%;
   padding: 0.9rem 0 0;
-  transition:
-    opacity 0.9s cubic-bezier(0.2, 0.85, 0.2, 1),
-    transform 0.9s cubic-bezier(0.2, 0.85, 0.2, 1);
 }
 
 .home-intro {
@@ -51,8 +43,9 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  /* Start hidden — GSAP will reveal and then fade out */
   opacity: 1;
-  transition: opacity 0.95s ease 0.2s;
+  visibility: visible;
 }
 
 .home-intro-title {
@@ -63,22 +56,6 @@
   font-size: clamp(2.3rem, 8vw, 6.2rem);
   line-height: 0.95;
   text-shadow: 0 14px 30px rgba(25, 68, 241, 0.15);
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  transition:
-    transform 1s cubic-bezier(0.2, 0.85, 0.18, 1),
-    letter-spacing 1s cubic-bezier(0.2, 0.85, 0.18, 1),
-    opacity 0.7s ease;
-}
-
-.home-intro--morph .home-intro-title {
-  transform: translateY(-26vh) scale(1.58);
-  letter-spacing: -0.01em;
-  opacity: 0;
-}
-
-.home-intro--morph {
-  opacity: 0;
 }
 
 

@@ -6,51 +6,71 @@ import aifest from '../assets/aifest.jpg';
 import natpsc from '../assets/natpsc.jpg';
 import regpsc from '../assets/regpsc.jpg';
 import korea from '../assets/korea.jpg';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
+gsap.registerPlugin(ScrollTrigger);
 
 function Awards() {
   const [selectedAward, setSelectedAward] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
+  const imageRef = useRef(null);
+  const descRef  = useRef(null);
+  const modalRef = useRef(null);
 
+  // Scroll-triggered entrance — scoped to section, unified timeline
+  const sectionRef = useScrollReveal((tl, el) => {
+    tl.from(el.querySelector('.section-title'),        { y: 30,  autoAlpha: 0, duration: 0.6, ease: 'power2.out' })
+      .from(el.querySelector('.award-description-side'),{ x: -40, autoAlpha: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+      .from(el.querySelector('.award-card-side'),       { x: 40,  autoAlpha: 0, duration: 0.6, ease: 'power2.out' }, '-=0.5');
+  });
+
+  // GSAP crossfade for award cycling
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const TOTAL = 6;
+    const id = setInterval(() => {
+      const next = (currentIndex + 1) % TOTAL;
+      gsap.to([imageRef.current, descRef.current], {
+        autoAlpha: 0, y: -12, duration: 0.3, ease: 'power2.in',
+        onComplete: () => {
+          setCurrentIndex(next);
+          gsap.fromTo(
+            [imageRef.current, descRef.current],
+            { autoAlpha: 0, y: 12 },
+            { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out' }
+          );
+        },
+      });
+    }, 4500);
+    return () => clearInterval(id);
+  }, [currentIndex]);
 
-    // Observe section title
-    const titleElement = sectionRef.current?.querySelector('.section-title');
-    if (titleElement) observer.observe(titleElement);
-
-    // Observe all award cards
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
+  // Modal open/close animations
+  const openModal = (award) => {
+    setSelectedAward(award);
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      if (modalRef.current) {
+        gsap.fromTo(modalRef.current,
+          { autoAlpha: 0, y: 40, scale: 0.97 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' }
+        );
+      }
     });
+  };
 
-    return () => observer.disconnect();
-  }, []);
-
-  // Auto-cycle through awards
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % awards.length);
-        setIsTransitioning(false);
-      }, 300); // Half of transition duration
-    }, 4500); // Change every 4.5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  const closeModal = () => {
+    if (modalRef.current) {
+      gsap.to(modalRef.current, {
+        autoAlpha: 0, y: 30, scale: 0.97, duration: 0.3, ease: 'power2.in',
+        onComplete: () => { setSelectedAward(null); document.body.style.overflow = 'auto'; },
+      });
+    } else {
+      setSelectedAward(null);
+      document.body.style.overflow = 'auto';
+    }
+  };
 
   const awards = [
     {
@@ -121,24 +141,14 @@ function Awards() {
     }
   ];
 
-  const openModal = (award) => {
-    setSelectedAward(award);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setSelectedAward(null);
-    document.body.style.overflow = 'auto';
-  };
-
   return (
     <section id="awards" className="awards-section" ref={sectionRef}>
       <div className="container">
-        <h2 className="section-title scroll-animate">Awards & Recognition</h2>
-        
+        <h2 className="section-title">Awards & Recognition</h2>
+
         <div className="awards-layout">
-          {/* Left side - Description that changes with card */}
-          <div className="award-description-side">
+          {/* Left side - Description */}
+          <div className="award-description-side" ref={descRef}>
             <p className="award-organization-large">{awards[currentIndex].organization}</p>
             <h3 className="award-title-large">{awards[currentIndex].title}</h3>
             <div className="award-meta">
@@ -148,13 +158,13 @@ function Awards() {
             <p className="award-details-text">{awards[currentIndex].details}</p>
           </div>
 
-          {/* Right side - Single image with fade animation */}
+          {/* Right side - Image (GSAP crossfade via imageRef) */}
           <div className="award-card-side">
-            <div className={`award-image-container-single ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-              <img 
-                src={awards[currentIndex].image} 
-                alt={awards[currentIndex].title} 
-                className="award-image-single" 
+            <div className="award-image-container-single" ref={imageRef}>
+              <img
+                src={awards[currentIndex].image}
+                alt={awards[currentIndex].title}
+                className="award-image-single"
               />
             </div>
           </div>
@@ -163,7 +173,7 @@ function Awards() {
 
       {selectedAward && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>×</button>
             <div className="modal-image">
               <img src={selectedAward.image} alt={selectedAward.title} />

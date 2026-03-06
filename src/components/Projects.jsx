@@ -6,30 +6,80 @@ import diasight from '../assets/diasight.png';
 import aether from '../assets/aether.png';
 import logsync from '../assets/logsync.png';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const modalRef = useRef(null);
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const stageRef = useRef(null);
+
+  const cardLayouts = useMemo(() => [
+    { y: '6px',  r: '4deg',   z: 7 },
+    { y: '20px', r: '13deg',  z: 5 },
+    { y: '14px', r: '-8deg',  z: 6 },
+    { y: '18px', r: '9deg',   z: 5 },
+  ], []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const section = sectionRef.current;
+    const titleEl = titleRef.current;
+    const stage = stageRef.current;
+    if (!section || !titleEl || !stage) return;
 
-    const titleElement = sectionRef.current?.querySelector('.section-title');
-    if (titleElement) observer.observe(titleElement);
+    const cards = Array.from(stage.querySelectorAll('.project-showcase-card'));
+    const total = cards.length;
+    const cardW = 240;
+    const overlap = 28; // final overlap between cards
 
-    const stage = sectionRef.current?.querySelector('.projects-cards-stage');
-    if (stage) observer.observe(stage);
+    // Compute each card's final X position relative to center
+    // Cards spread from center outward
+    const finalX = cards.map((_, i) => {
+      const offset = i * (cardW - overlap);
+      const totalW = (total - 1) * (cardW - overlap) + cardW;
+      return offset - totalW / 2 + cardW / 2;
+    });
 
-    return () => observer.disconnect();
+    const finalLayouts = cards.map((_, i) => cardLayouts[i % cardLayouts.length]);
+
+    // Set all cards to start: stacked at center, scaled down
+    cards.forEach((card) => {
+      gsap.set(card, { x: 0, scale: 0.72, rotate: 0, autoAlpha: 1 });
+    });
+    gsap.set(titleEl, { autoAlpha: 0, y: 24 });
+
+    // Build scrubbed timeline
+    const tl = gsap.timeline({ paused: true });
+
+    tl.to(titleEl, { autoAlpha: 1, y: 0, duration: 0.25, ease: 'none' }, 0);
+
+    cards.forEach((card, i) => {
+      tl.to(card, {
+        x: finalX[i],
+        scale: 1,
+        rotate: finalLayouts[i].r,
+        duration: 1,
+        ease: 'none',
+      }, 0); // all start at same time so scrub drives them together
+    });
+
+    const st = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 80%',
+      end: 'top 10%',
+      scrub: 0.8,
+      animation: tl,
+    });
+
+    return () => {
+      st.kill();
+      tl.kill();
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const projects = useMemo(
@@ -108,62 +158,60 @@ function Projects() {
     []
   );
 
-  const cardLayouts = [
-    { y: '22px', r: '-14deg', z: 4 },
-    { y: '8px', r: '-5deg', z: 6 },
-    { y: '6px', r: '4deg', z: 7 },
-    { y: '20px', r: '13deg', z: 5 },
-    { y: '14px', r: '-8deg', z: 6 },
-    { y: '18px', r: '9deg', z: 5 }
-  ];
-
   const openModal = (project) => {
     setSelectedProject(project);
     document.body.style.overflow = 'hidden';
+    // animate in after render
+    requestAnimationFrame(() => {
+      if (modalRef.current) {
+        gsap.fromTo(modalRef.current,
+          { autoAlpha: 0, y: 40, scale: 0.97 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' }
+        );
+      }
+    });
   };
 
   const closeModal = () => {
-    setSelectedProject(null);
-    document.body.style.overflow = 'auto';
+    if (modalRef.current) {
+      gsap.to(modalRef.current, {
+        autoAlpha: 0, y: 30, scale: 0.97, duration: 0.3, ease: 'power2.in',
+        onComplete: () => { setSelectedProject(null); document.body.style.overflow = 'auto'; },
+      });
+    } else {
+      setSelectedProject(null);
+      document.body.style.overflow = 'auto';
+    }
   };
 
   return (
     <section id="projects" className="projects-section" ref={sectionRef}>
       <div className="projects-shell">
-        <h2 className="section-title scroll-animate">My Projects</h2>
+        <h2 className="section-title" ref={titleRef}>My Projects</h2>
 
-        <div className="projects-cards-stage" aria-label="Project cards showcase">
-          {projects.map((project, index) => {
-            const layout = cardLayouts[index % cardLayouts.length];
-            return (
-              <article
-                key={project.id}
-                className={`project-showcase-card ${project.customClass || ''}`}
-                style={
-                  {
-                    '--card-y': layout.y,
-                    '--card-r': layout.r,
-                    '--card-z': layout.z
-                  }
-                }
-                onClick={() => openModal(project)}
-              >
-                <div className="project-showcase-image-wrap">
-                  <img src={project.image} alt={project.title} className="project-showcase-image" />
-                </div>
-                <div className="project-showcase-meta">
-                  <span className="project-pill">{project.number}</span>
-                  <p className="project-showcase-title">{project.title}</p>
-                </div>
-              </article>
-            );
-          })}
+        <div className="projects-cards-stage" ref={stageRef} aria-label="Project cards showcase">
+          {projects.map((project, index) => (
+            <article
+              key={project.id}
+              className={`project-showcase-card ${project.customClass || ''}`}
+              onClick={() => openModal(project)}
+            >
+              <div className="project-showcase-image-wrap">
+                <img src={project.image} alt={project.title} className="project-showcase-image" />
+              </div>
+              <div className="project-showcase-meta">
+                <span className="project-pill">{project.number}</span>
+                <p className="project-showcase-title">{project.title}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
 
       {selectedProject && (
         <div className="modal-overlay" onClick={closeModal}>
           <div
+            ref={modalRef}
             className={`modal-content ${selectedProject.customClass || ''}`}
             onClick={(e) => e.stopPropagation()}
           >

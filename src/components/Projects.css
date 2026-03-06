@@ -40,66 +40,38 @@
 .projects-cards-stage {
   position: relative;
   height: 340px;
+  width: 100%;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 2rem auto 0;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding: 0 0.4rem 0.8rem;
-  width: fit-content;
+  align-items: center;
+  overflow: visible;
 }
 
-/* Before animate-in: all cards stacked at center, no rotation */
-.projects-cards-stage:not(.animate-in) .project-showcase-card {
-  transform: translateY(0px) rotate(0deg) !important;
-  margin-left: -185px !important;
-  opacity: 0;
-}
-
-.projects-cards-stage:not(.animate-in) .project-showcase-card:first-child {
-  margin-left: 0 !important;
-}
-
+/* GSAP handles scroll-in animations — GSAP controls x/scale/rotate */
 .project-showcase-card {
-  position: relative;
+  position: absolute;
   width: 240px;
   height: 270px;
-  transform: translateY(var(--card-y)) rotate(var(--card-r));
-  z-index: var(--card-z);
+  z-index: 5;
   background: #F5F3F3;
   border-radius: 16px;
   border: 1px solid rgba(25, 68, 241, 0.1);
   padding: 0.45rem;
   box-shadow: 0 12px 26px rgba(25, 68, 241, 0.12);
   cursor: pointer;
-  transition:
-    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-    margin-left 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 1s ease,
-    box-shadow 0.35s ease;
-  margin-left: -28px;
+  transition: box-shadow 0.35s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   opacity: 1;
+  will-change: transform, opacity;
 }
 
-/* Stagger each card's animation delay */
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(1) { transition-delay: 0s; }
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(2) { transition-delay: 0.12s; }
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(3) { transition-delay: 0.24s; }
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(4) { transition-delay: 0.36s; }
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(5) { transition-delay: 0.48s; }
-.projects-cards-stage.animate-in .project-showcase-card:nth-child(6) { transition-delay: 0.60s; }
 
 .project-showcase-card:hover {
-  transform: translateY(calc(var(--card-y) - 14px)) rotate(var(--card-r)) !important;
   box-shadow: 0 22px 38px rgba(25, 68, 241, 0.2);
-  z-index: 20;
-}
-
-.project-showcase-card:first-child {
-  margin-left: 0;
 }
 
 .project-showcase-image-wrap {
@@ -148,17 +120,9 @@
   white-space: nowrap;
 }
 
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
+/* GSAP handles all scroll and modal animations */
 
-.scroll-animate.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* GSAP handles modal entrance/exit — no CSS keyframes needed */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -172,16 +136,6 @@
   justify-content: center;
   z-index: 1000;
   padding: 2rem;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .modal-content {
@@ -193,18 +147,6 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .modal-close {
