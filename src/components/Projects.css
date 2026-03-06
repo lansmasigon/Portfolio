@@ -39,8 +39,8 @@
 
 .projects-cards-stage {
   position: relative;
-  height: 300px;
-  max-width: 930px;
+  height: 340px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -49,9 +49,21 @@
   width: fit-content;
 }
 
+/* Before animate-in: all cards stacked at center, no rotation */
+.projects-cards-stage:not(.animate-in) .project-showcase-card {
+  transform: translateY(0px) rotate(0deg) !important;
+  margin-left: -185px !important;
+  opacity: 0;
+}
+
+.projects-cards-stage:not(.animate-in) .project-showcase-card:first-child {
+  margin-left: 0 !important;
+}
+
 .project-showcase-card {
   position: relative;
-  width: clamp(170px, 20vw, 240px);
+  width: 240px;
+  height: 270px;
   transform: translateY(var(--card-y)) rotate(var(--card-r));
   z-index: var(--card-z);
   background: #F5F3F3;
@@ -60,13 +72,30 @@
   padding: 0.45rem;
   box-shadow: 0 12px 26px rgba(25, 68, 241, 0.12);
   cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  margin-left: -20px;
+  transition:
+    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s ease,
+    box-shadow 0.35s ease;
+  margin-left: -28px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 1;
 }
 
+/* Stagger each card's animation delay */
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(1) { transition-delay: 0s; }
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(2) { transition-delay: 0.12s; }
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(3) { transition-delay: 0.24s; }
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(4) { transition-delay: 0.36s; }
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(5) { transition-delay: 0.48s; }
+.projects-cards-stage.animate-in .project-showcase-card:nth-child(6) { transition-delay: 0.60s; }
+
 .project-showcase-card:hover {
-  transform: translateY(calc(var(--card-y) - 12px)) rotate(var(--card-r));
-  box-shadow: 0 18px 34px rgba(25, 68, 241, 0.18);
+  transform: translateY(calc(var(--card-y) - 14px)) rotate(var(--card-r)) !important;
+  box-shadow: 0 22px 38px rgba(25, 68, 241, 0.2);
+  z-index: 20;
 }
 
 .project-showcase-card:first-child {
@@ -77,7 +106,8 @@
   background: linear-gradient(180deg, #eceaea, #e2e0e0);
   border-radius: 12px;
   border: 1px solid rgba(25, 68, 241, 0.07);
-  height: clamp(124px, 13vw, 168px);
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,9 +115,10 @@
 }
 
 .project-showcase-image {
-  max-width: 88%;
-  max-height: 84%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  padding: 12px;
 }
 
 .project-showcase-meta {
@@ -115,11 +146,6 @@
   font-size: 0.78rem;
   font-weight: 600;
   white-space: nowrap;
-}
-
-.project-showcase-card.diatrack-card .project-showcase-image {
-  max-width: 100%;
-  max-height: 95%;
 }
 
 .scroll-animate {

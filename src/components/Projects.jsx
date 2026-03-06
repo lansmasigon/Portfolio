@@ -3,6 +3,8 @@ import diatrack from '../assets/diatrack.svg';
 import hospital from '../assets/hospital.png';
 import attrition from '../assets/attritionrisk.png';
 import diasight from '../assets/diasight.png';
+import aether from '../assets/aether.png';
+import logsync from '../assets/logsync.png';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 function Projects() {
@@ -23,6 +25,9 @@ function Projects() {
 
     const titleElement = sectionRef.current?.querySelector('.section-title');
     if (titleElement) observer.observe(titleElement);
+
+    const stage = sectionRef.current?.querySelector('.projects-cards-stage');
+    if (stage) observer.observe(stage);
 
     return () => observer.disconnect();
   }, []);
@@ -74,6 +79,30 @@ function Projects() {
         link: '#',
         details:
           'An advanced analytics solution that uses machine learning to predict employee attrition risk and identify key factors contributing to employee turnover. The system helps HR departments take proactive measures to retain valuable talent and improve workplace satisfaction.'
+      },
+      {
+        id: 5,
+        number: '05',
+        title: 'Aether',
+        description: 'A modern productivity and collaboration platform',
+        technologies: ['React', 'Node.js', 'Tailwind'],
+        image: aether,
+        link: '#',
+        customClass: 'aether-card',
+        details:
+          'Aether is a modern productivity and collaboration platform designed to streamline team workflows and project management. It features real-time collaboration tools, task tracking, and smart notifications to keep teams in sync.'
+      },
+      {
+        id: 6,
+        number: '06',
+        title: 'LogSync',
+        description: 'Automated log management and synchronization system',
+        technologies: ['Python', 'FastAPI', 'PostgreSQL'],
+        image: logsync,
+        link: '#',
+        customClass: 'logsync-card',
+        details:
+          'LogSync is an automated log management and synchronization system that aggregates logs from multiple services into a unified, searchable interface. It provides real-time alerts, anomaly detection, and detailed reporting for DevOps teams.'
       }
     ],
     []
@@ -83,7 +112,9 @@ function Projects() {
     { y: '22px', r: '-14deg', z: 4 },
     { y: '8px', r: '-5deg', z: 6 },
     { y: '6px', r: '4deg', z: 7 },
-    { y: '20px', r: '13deg', z: 5 }
+    { y: '20px', r: '13deg', z: 5 },
+    { y: '14px', r: '-8deg', z: 6 },
+    { y: '18px', r: '9deg', z: 5 }
   ];
 
   const openModal = (project) => {
