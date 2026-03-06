@@ -4,18 +4,18 @@ import { useGLTF, Environment, Html, Bounds, useBounds, Center } from '@react-th
 import * as THREE from 'three';
 
 const KEYCAPS = [
-  { label: 'React',      svgUrl: '/icons/react.svg' },
-  { label: 'JS',         svgUrl: '/icons/javascript.svg' },
-  { label: 'TypeScript', svgUrl: '/icons/typescript.svg' },
-  { label: 'Python',     svgUrl: '/icons/python.svg' },
-  { label: 'Node',       svgUrl: '/icons/nodejs.svg' },
-  { label: 'Git',        svgUrl: '/icons/git.svg' },
-  { label: 'Vite',       svgUrl: '/icons/vitejs.svg' },
-  { label: 'CSS',        svgUrl: '/icons/css3.svg' },
-  { label: 'HTML',       svgUrl: '/icons/html5.svg' },
-  { label: 'MySQL',      svgUrl: '/icons/mysql.svg' },
-  { label: 'Figma',      svgUrl: '/icons/figma.svg' },
-  { label: 'PHP',        svgUrl: '/icons/php.svg' },
+  { label: 'React',      svgUrl: '/icons/react.svg',      color: '#4F5A6C' },
+  { label: 'JS',         svgUrl: '/icons/javascript.svg', color: '#F2CF2C' },
+  { label: 'TypeScript', svgUrl: '/icons/typescript.svg', color: '#3178C6' },
+  { label: 'Python',     svgUrl: '/icons/python.svg',     color: '#070a6bff' },
+  { label: 'Supabase',   svgUrl: '/icons/supabase.svg',   color: '#95f5c73c'},
+  { label: 'Git',        svgUrl: '/icons/git.svg',        color: '#f4a16aff' },
+  { label: 'Convex',     svgUrl: '/icons/convex.svg',     color: '#c5bbb73f'},
+  { label: 'CSS',        svgUrl: '/icons/css3.svg',       color: '#264DE4' },
+  { label: 'HTML',       svgUrl: '/icons/html5.svg',      color: '#E34F26' },
+  { label: 'MySQL',      svgUrl: '/icons/mysql.svg',      color: '#30badaff' },
+  { label: 'Figma',      svgUrl: '/icons/figma.svg',      color: '#3666afff' },
+  { label: 'PHP',        svgUrl: '/icons/php.svg',        color: '#8993BE' },
 ];
 
 const COLS = 4, ROWS = 3, STEP_X = 20, STEP_Z = 20;
@@ -26,13 +26,13 @@ const LOCAL_POSITIONS = Array.from({ length: ROWS * COLS }, (_, i) => [
   (Math.floor(i / COLS) - (ROWS - 1) / 2) * STEP_Z,
 ]);
 
-function makeKeycapTexture(svgUrl) {
+function makeKeycapTexture(svgUrl, bgColor) {
   const S = 512;
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = S;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = '#FFFFFF';
+  ctx.fillStyle = bgColor;
   ctx.fillRect(0, 0, S, S);
 
   const tex = new THREE.CanvasTexture(canvas);
@@ -45,7 +45,7 @@ function makeKeycapTexture(svgUrl) {
       const url = URL.createObjectURL(blob);
       const img = new Image();
       img.onload = () => {
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, S, S);
         const pad = S * 0.18;
         ctx.drawImage(img, pad, pad, S - pad * 2, S - pad * 2);
@@ -69,25 +69,28 @@ function AutoFit({ children }) {
   return <group ref={(r) => { if (r) bounds.refresh(r).fit(); }}>{children}</group>;
 }
 
-function SingleKeycap({ position, svgUrl, baseScene }) {
+function SingleKeycap({ position, svgUrl, color, emissive, baseScene }) {
   const groupRef = useRef();
   const [hovered, setHovered] = useState(false);
   const pressY = useRef(0);
 
   const mesh = useMemo(() => {
-    const tex = makeKeycapTexture(svgUrl);
+    const tex = makeKeycapTexture(svgUrl, color);
     const c = baseScene.clone(true);
+    const emissiveColor = emissive ?? color;
     c.traverse((child) => {
       if (!child.isMesh) return;
       child.material = new THREE.MeshStandardMaterial({
         color: '#ffffff',
         map: tex,
-        roughness: 0.25,
-        metalness: 0.08,
+        emissive: emissiveColor,
+        emissiveIntensity: 0.18,
+        roughness: 0.2,
+        metalness: 0.15,
       });
     });
     return c;
-  }, [baseScene, svgUrl]);
+  }, [baseScene, svgUrl, color, emissive]);
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
@@ -125,6 +128,8 @@ function KeycapGrid() {
                 key={cap.label}
                 position={LOCAL_POSITIONS[i]}
                 svgUrl={cap.svgUrl}
+                color={cap.color}
+                emissive={cap.emissive}
                 baseScene={baseScene}
               />
             ))}

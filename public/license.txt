@@ -1,0 +1,11 @@
+Model Information:
+* title:	KeyCap
+* source:	https://sketchfab.com/3d-models/keycap-72a4129f06294e6c9cd60a0feeb6b508
+* author:	bac.canh.5661 (https://sketchfab.com/bac.canh.5661)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "KeyCap" (https://sketchfab.com/3d-models/keycap-72a4129f06294e6c9cd60a0feeb6b508) by bac.canh.5661 (https://sketchfab.com/bac.canh.5661) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
