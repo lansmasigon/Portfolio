@@ -187,7 +187,13 @@ function Projects() {
   return (
     <section id="projects" className="projects-section" ref={sectionRef}>
       <div className="projects-shell">
-        <h2 className="section-title" ref={titleRef}>My Projects</h2>
+        {/* Header row: title left, number right */}
+        <div className="projects-header">
+          <h2 className="section-title" ref={titleRef}>My Projects</h2>
+          <div className="projects-section-num" aria-hidden="true">
+            <span className="section-index-num">03</span>
+          </div>
+        </div>
 
         <div className="projects-cards-stage" ref={stageRef} aria-label="Project cards showcase">
           {projects.map((project, index) => (
