@@ -1,0 +1,73 @@
+/* ─── CONTACT / CTA ──────────────────────────── */
+.contact-section {
+  background: var(--ink);
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.contact-shell {
+  margin: 0;
+}
+
+/* ── Single horizontal row ── */
+.contact-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.3em;
+  line-height: 1;
+}
+
+/* "Let's Build" — solid cream */
+.contact-lets {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 10vw, 12rem);
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── SVG "TOGETHER" — inline with the text, red stroke ── */
+.contact-svg {
+  /* height matches the "Let's Build" cap-height */
+  height: clamp(4rem, 9vw, 10.8rem);
+  width: auto;
+  display: block;
+  flex-shrink: 1;
+  overflow: visible;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-lets {
+    font-size: clamp(2.8rem, 11vw, 6rem);
+  }
+  .contact-svg {
+    height: clamp(2.5rem, 10vw, 5.4rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-row {
+    gap: 0.15em;
+    flex-wrap: wrap;
+  }
+  .contact-lets {
+    font-size: clamp(2.2rem, 13vw, 4rem);
+  }
+  .contact-svg {
+    height: clamp(2rem, 12vw, 3.6rem);
+  }
+}
+
