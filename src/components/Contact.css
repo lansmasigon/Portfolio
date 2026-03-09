@@ -38,9 +38,8 @@
   flex-shrink: 0;
 }
 
-/* ── SVG "TOGETHER" — inline with the text, red stroke ── */
+/* ── SVG "TOGETHER" ── */
 .contact-svg {
-  /* height matches the "Let's Build" cap-height */
   height: clamp(4rem, 9vw, 10.8rem);
   width: auto;
   display: block;

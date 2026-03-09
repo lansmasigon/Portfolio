@@ -121,11 +121,11 @@
 /* Big background number */
 .hero-bg-number {
   position: absolute;
-  right: clamp(1rem, 3vw, 3rem);
+  right: clamp(1rem, 2vw, 0rem);
   bottom: clamp(0rem, 1vh, 1rem);
   font-family: var(--font-display);
-  font-size: clamp(17rem, 33vw, 34rem);
-  line-height: 0.85;
+  font-size: clamp(14rem, 27vw, 28rem);
+  line-height: 1;
   color: transparent;
   -webkit-text-stroke: 1px rgba(242, 237, 230, 0.18);
   pointer-events: none;
