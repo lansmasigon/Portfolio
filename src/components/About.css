@@ -267,7 +267,23 @@
   }
 }
 
+@media (max-width: 600px) {
+  .about-section {
+    padding: clamp(3rem, 6vh, 5rem) clamp(1rem, 4vw, 1.5rem);
+  }
+  .about-heading {
+    font-size: clamp(2.5rem, 13vw, 4rem);
+  }
+  .about-body {
+    font-size: 0.88rem;
+  }
+  .about-bg-label {
+    font-size: clamp(6rem, 30vw, 12rem);
+  }
+}
+
 @media (max-width: 480px) {
   .about-stats { gap: 2rem; }
+  .stat-roller { font-size: clamp(1.8rem, 8vw, 2.5rem); }
   .stat-number { font-size: 2.5rem; }
 }

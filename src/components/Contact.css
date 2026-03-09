@@ -48,7 +48,24 @@
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .contact-row {
+    flex-wrap: wrap;
+    gap: 0.1em;
+  }
+  .contact-lets {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    flex-basis: 100%;
+  }
+  .contact-svg {
+    height: clamp(3rem, 9vw, 6rem);
+  }
+}
+
 @media (max-width: 768px) {
+  .contact-section {
+    padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 4vw, 2rem);
+  }
   .contact-lets {
     font-size: clamp(2.8rem, 11vw, 6rem);
   }
@@ -59,7 +76,7 @@
 
 @media (max-width: 480px) {
   .contact-row {
-    gap: 0.15em;
+    gap: 0.05em;
     flex-wrap: wrap;
   }
   .contact-lets {
