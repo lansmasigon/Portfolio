@@ -5,10 +5,14 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.bin'],
+  assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.bin', '**/*.svg'],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
   },
 })

@@ -52,8 +52,11 @@ function makeKeycapTexture(svgUrl, bgColor) {
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
 
-  fetch(svgUrl)
-    .then((res) => res.text())
+  fetch(svgUrl, { mode: 'cors' })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Failed to fetch ${svgUrl}`);
+      return res.text();
+    })
     .then((svgText) => {
       const blob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
@@ -66,10 +69,13 @@ function makeKeycapTexture(svgUrl, bgColor) {
         tex.needsUpdate = true;
         URL.revokeObjectURL(url);
       };
-      img.onerror = () => { URL.revokeObjectURL(url); };
+      img.onerror = () => { 
+        console.error('Image load error for:', svgUrl);
+        URL.revokeObjectURL(url); 
+      };
       img.src = url;
     })
-    .catch(() => console.warn('Failed to fetch SVG:', svgUrl));
+    .catch((err) => console.warn('Failed to fetch SVG:', svgUrl, err));
 
   return tex;
 }
