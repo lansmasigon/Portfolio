@@ -3,7 +3,6 @@ import KeycapModel from './KeycapModel';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { animate } from 'animejs';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,20 +52,23 @@ export default function About() {
           .to(bgLabelRef.current,   { autoAlpha: 1, duration: 1.2        }, 0)
           .to(sectionNumRef.current,{ autoAlpha: 1, x: 0, duration: 0.7  }, 0);
 
-        // Stat counters with anime.js
-        const stats = statsRef.current?.querySelectorAll('.stat-number');
-        if (stats) {
-          stats.forEach(stat => {
-            const target = parseInt(stat.dataset.target, 10);
-            const obj = { val: 0 };
-            animate(obj, {
-              val: target,
-              duration: 1400,
-              ease: 'outExpo',
-              delay: 500,
-              onUpdate: () => {
-                stat.textContent = Math.round(obj.val) + (stat.dataset.suffix || '');
-              },
+        // Stat rollers — awards first, then projects
+        const rollers = statsRef.current?.querySelectorAll('.stat-roller');
+        if (rollers?.length) {
+          rollers.forEach((roller, idx) => {
+            const target  = parseInt(roller.dataset.target, 10);
+            const track   = roller.querySelector('.stat-roller-track');
+            const digits  = roller.querySelectorAll('.stat-roller-digit');
+            const digitH  = digits[0]?.offsetHeight || 48;
+            // Start at top (digit 0 visible)
+            gsap.set(track, { y: 0 });
+            // Stagger: awards at 400ms, projects at 400 + 900ms
+            const delay = 0.4 + idx * 0.9;
+            gsap.to(track, {
+              y: -(target * digitH),
+              duration: 1.6,
+              ease: 'power4.out',
+              delay,
             });
           });
         }
@@ -104,11 +106,23 @@ export default function About() {
 
           <div className="about-stats" ref={statsRef}>
             <div className="about-stat">
-              <span className="stat-number" data-target="6" data-suffix="+">0+</span>
+              <div className="stat-roller" data-target="6" data-suffix="+">
+                <div className="stat-roller-track">
+                  {[0,1,2,3,4,5,6].map(n => (
+                    <span key={n} className="stat-roller-digit">{n}+</span>
+                  ))}
+                </div>
+              </div>
               <span className="stat-label">Awards Won</span>
             </div>
             <div className="about-stat">
-              <span className="stat-number" data-target="6" data-suffix="+">0+</span>
+              <div className="stat-roller" data-target="6" data-suffix="+">
+                <div className="stat-roller-track">
+                  {[0,1,2,3,4,5,6].map(n => (
+                    <span key={n} className="stat-roller-digit">{n}+</span>
+                  ))}
+                </div>
+              </div>
               <span className="stat-label">Projects Built</span>
             </div>
           </div>

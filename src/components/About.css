@@ -169,6 +169,29 @@
   letter-spacing: 0.02em;
 }
 
+/* Slot-machine roller */
+.stat-roller {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  height: 1em;
+  overflow: hidden;
+}
+
+.stat-roller-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.stat-roller-digit {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
 .stat-label {
   font-family: var(--font-body);
   font-size: 0.6rem;
