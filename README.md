@@ -40,31 +40,6 @@ npm run build
 
 The optimized production build will be in the `dist` folder.
 
-## Customization
-
-### Update Your Information
-
-1. **Home Section** (`src/components/Home.jsx`):
-   - Change your name in the title
-   - Update your role/subtitle
-   - Modify the description
-
-2. **Projects** (`src/components/Projects.jsx`):
-   - Edit the projects array with your own projects
-   - Update titles, descriptions, technologies, and links
-
-3. **Awards** (`src/components/Awards.jsx`):
-   - Add your own awards and achievements
-   - Update titles, organizations, years, and descriptions
-
-4. **Tech Stack** (`src/components/TechStack.jsx`):
-   - Modify the technologies array
-   - Change icons and descriptions
-
-5. **Footer** (`src/components/Footer.jsx`):
-   - Update contact information (email, phone, location)
-   - Add your social media links
-
 ### Styling
 
 Each component has its own CSS file for easy customization:
@@ -79,7 +54,6 @@ Each component has its own CSS file for easy customization:
 - React 18
 - Vite
 - CSS3 with responsive design
-- Smooth scrolling navigation
 
 ## React + Vite
 
