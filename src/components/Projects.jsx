@@ -134,20 +134,20 @@ function Projects() {
         id: 5,
         number: '05',
         title: 'Aether',
-        description: 'A modern productivity and collaboration platform',
-        technologies: ['React', 'Node.js', 'Tailwind'],
+        description: 'A single-player browser RPG, featuring town-based exploration, crafting, quests, and progression.',
+        technologies: ['Phaser 3','Javascript'],
         image: aether,
         link: '#',
         customClass: 'aether-card',
         details:
-          'Aether is a modern productivity and collaboration platform designed to streamline team workflows and project management. It features real-time collaboration tools, task tracking, and smart notifications to keep teams in sync.'
+          'Aether is a single-player browser RPG, featuring town-based exploration, crafting, quests, and progression.'
       },
       {
         id: 6,
         number: '06',
         title: 'LogSync',
-        description: 'Automated log management and synchronization system',
-        technologies: ['Python', 'FastAPI', 'PostgreSQL'],
+        description: 'LogSync AI is an automated system that creates professional internship journals by intelligently mapping GitHub activity onto a standardized 08:00–17:00 workday schedule.',
+        technologies: ['TypeScript ', 'Tailwind ', 'Convex'],
         image: logsync,
         link: '#',
         customClass: 'logsync-card',
