@@ -138,16 +138,16 @@ export default function Home() {
       <div className="hero-descriptor" ref={descriptRef}>
         <div className="hero-socials-row">
           <div className="hero-socials" aria-label="Social links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a href="https://www.facebook.com/lansmasigon/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Facebook size={14} />
             </a>
-            <a href="mailto:hello@example.com" aria-label="Email">
+            <a href="mailto:lancemasigon@gmail.com" aria-label="Email">
               <Mail size={14} />
             </a>
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github size={14} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/lancegabrielmasigon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin size={14} />
             </a>
           </div>
