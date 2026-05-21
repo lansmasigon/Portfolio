@@ -3,7 +3,6 @@ import Home from './components/Home'
 import About from './components/About'
 import Projects from './components/Projects'
 import Awards from './components/Awards'
-import Contact from './components/Contact'
 import { Analytics } from "@vercel/analytics/react"
 import { useEffect, useRef } from 'react'
 
@@ -45,13 +44,10 @@ function App() {
 
   return (
     <div className="app">
-      <div className="cursor-dot" ref={dotRef} />
-      <div className="cursor-ring" ref={ringRef} />
       <Home />
       <About />
       <Projects />
       <Awards />
-      <Contact />
       <Analytics />
     </div>
   )
