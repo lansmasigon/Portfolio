@@ -6,6 +6,7 @@ import aifest from '../assets/aifest.jpg';
 import natpsc from '../assets/natpsc.jpg';
 import regpsc from '../assets/regpsc.jpg';
 import korea from '../assets/korea.jpg';
+import openFolder from '../assets/open-folder.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -84,28 +85,27 @@ export default function Awards() {
   const [hoveredId, setHoveredId] = useState(null);
   const [selectedAward, setSelectedAward] = useState(null);
   const sectionRef = useRef(null);
-  const bgImgRef   = useRef(null);
   const modalRef   = useRef(null);
-  const rowRefs    = useRef([]);
+  const folderRefs = useRef([]);
 
-  // Scroll-triggered row entrance
+  // Scroll-triggered folder entrance
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    rowRefs.current.forEach((row, i) => {
-      if (!row) return;
-      gsap.set(row, { autoAlpha: 0, y: 30 });
+    folderRefs.current.forEach((folder, i) => {
+      if (!folder) return;
+      gsap.set(folder, { autoAlpha: 0, y: 30 });
       ScrollTrigger.create({
-        trigger: row,
+        trigger: folder,
         start: 'top 88%',
         once: true,
         onEnter: () => {
-          gsap.to(row, {
+          gsap.to(folder, {
             autoAlpha: 1, y: 0,
             duration: 0.65,
             ease: 'power3.out',
-            delay: i * 0.07,
+            delay: (i % 3) * 0.07,
           });
         },
       });
@@ -113,22 +113,6 @@ export default function Awards() {
 
     return () => ScrollTrigger.getAll().forEach(s => s.kill());
   }, []);
-
-  // Background image crossfade on hover
-  useEffect(() => {
-    const img = bgImgRef.current;
-    if (!img) return;
-    const award = AWARDS.find(a => a.id === hoveredId);
-    if (!award) {
-      gsap.to(img, { autoAlpha: 0, duration: 0.35, ease: 'power2.in' });
-    } else {
-      img.src = award.image;
-      gsap.fromTo(img,
-        { autoAlpha: 0, scale: 1.04 },
-        { autoAlpha: 0.18, scale: 1, duration: 0.55, ease: 'power2.out' }
-      );
-    }
-  }, [hoveredId]);
 
   const openModal = (award) => {
     setSelectedAward(award);
@@ -158,9 +142,6 @@ export default function Awards() {
   return (
     <section id="awards" className="awards-section" ref={sectionRef}>
 
-      {/* Ambient background image on hover */}
-      <img ref={bgImgRef} className="awards-bg-img" src="" alt="" aria-hidden="true" />
-
       {/* Section header */}
       <div className="awards-header">
         <h2 className="awards-title">Awards and<br /><em>Recognition</em></h2>
@@ -172,13 +153,13 @@ export default function Awards() {
         </div>
       </div>
 
-      {/* Award rows list */}
-      <div className="awards-list">
+      {/* Award folders grid */}
+      <div className="awards-grid">
         {AWARDS.map((award, i) => (
           <div
             key={award.id}
-            ref={el => rowRefs.current[i] = el}
-            className={`award-row ${hoveredId === award.id ? 'is-hovered' : ''} ${hoveredId && hoveredId !== award.id ? 'is-dimmed' : ''}`}
+            ref={el => folderRefs.current[i] = el}
+            className={`award-folder ${hoveredId === award.id ? 'is-hovered' : ''}`}
             onMouseEnter={() => setHoveredId(award.id)}
             onMouseLeave={() => setHoveredId(null)}
             onClick={() => openModal(award)}
@@ -186,16 +167,10 @@ export default function Awards() {
             tabIndex={0}
             onKeyDown={e => e.key === 'Enter' && openModal(award)}
           >
-            <span className="award-row-num">{award.number}</span>
-            <div className="award-row-main">
-              <h3 className="award-row-title">{award.title}</h3>
-              <p className="award-row-org">{award.organization}</p>
+            <div className="folder-icon">
+              <img src={openFolder} alt="Award folder" />
             </div>
-            <div className="award-row-meta">
-              <span className="award-row-year">{award.year}</span>
-              <span className="award-row-loc">{award.location}</span>
-            </div>
-            <div className="award-row-arrow" aria-hidden="true">→</div>
+            <p className="folder-name">{award.organization}</p>
           </div>
         ))}
       </div>
