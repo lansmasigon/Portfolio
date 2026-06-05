@@ -1,6 +1,7 @@
 import './App.css'
 import Home from './components/Home'
 import About from './components/About'
+import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Awards from './components/Awards'
 import { Analytics } from "@vercel/analytics/react"
@@ -46,6 +47,7 @@ function App() {
     <div className="app">
       <Home />
       <About />
+      <Experience />
       <Projects />
       <Awards />
       <Analytics />

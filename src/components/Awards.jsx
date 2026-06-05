@@ -148,7 +148,7 @@ export default function Awards() {
 
         {/* Section number */}
         <div className="awards-section-num" aria-hidden="true">
-          <span className="section-index-num">04</span>
+          <span className="section-index-num">05</span>
           <span className="section-index-label">AWARDS</span>
         </div>
       </div>

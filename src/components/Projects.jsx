@@ -146,13 +146,13 @@ function Projects() {
         id: 6,
         number: '06',
         title: 'LogSync',
-        description: 'LogSync AI is an automated system that creates professional internship journals by intelligently mapping GitHub activity onto a standardized 08:00–17:00 workday schedule.',
+        description: 'LogSync AI is an automated system that creates professional internship journals by intelligently mapping GitHub activity ',
         technologies: ['TypeScript ', 'Tailwind ', 'Convex'],
         image: logsync,
-        link: '#',
+        link: 'https://log-sync.vercel.app/',
         customClass: 'logsync-card',
         details:
-          'LogSync is an automated log management and synchronization system that aggregates logs from multiple services into a unified, searchable interface. It provides real-time alerts, anomaly detection, and detailed reporting for DevOps teams.'
+          'LogSync AI transforms your GitHub commits into professional daily work journals. Map your coding activity to a standard 9-to-5 schedule with AI-powered descriptions.'
       }
     ],
     []
@@ -189,9 +189,9 @@ function Projects() {
       <div className="projects-shell">
         {/* Header row: title left, number right */}
         <div className="projects-header">
-          <h2 className="section-title" ref={titleRef}>My Projects</h2>
+          <h2 className="section-title" ref={titleRef}>Selected Projects</h2>
           <div className="projects-section-num" aria-hidden="true">
-            <span className="section-index-num">03</span>
+            <span className="section-index-num">04</span>
           </div>
         </div>
 

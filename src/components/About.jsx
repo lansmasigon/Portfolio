@@ -100,8 +100,11 @@ export default function About() {
           <p className="about-body" ref={bodyRef}>
             Hello! I'm <strong>Lance Gabriel Masigon</strong>, a Fullstack Developer with a deep interest
             in UI/UX design. I enjoy building <strong>simple, clean, and user-friendly</strong> websites
-            while continuously learning new technologies. I'm passionate about crafting
-            simple yet meaningful digital experiences that leave a lasting impression.
+            while continuously learning new technologies.
+          </p>
+
+          <p className="about-body" ref={bodyRef}>
+            Graduated with a <strong>Bachelor of Science in Information Systems</strong>, Major in Business Analytics, Magna Cum Laude, from West Visayas State University.
           </p>
 
           <div className="about-stats" ref={statsRef}>

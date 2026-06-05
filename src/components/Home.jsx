@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { animate, stagger } from 'animejs';
 
-const NAME_CHARS = 'LANCE'.split('');
+const NAME_CHARS = 'PORTFOLIO'.split('');
 
 export default function Home() {
   const loaderRef   = useRef(null);
@@ -139,16 +139,16 @@ export default function Home() {
         <div className="hero-socials-row">
           <div className="hero-socials" aria-label="Social links">
             <a href="https://www.facebook.com/lansmasigon/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <Facebook size={14} />
+              <Facebook size={22} />
             </a>
             <a href="mailto:lancemasigon@gmail.com" aria-label="Email">
-              <Mail size={14} />
+              <Mail size={22} />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <Github size={14} />
+            <a href="https://github.com/lansmasigon" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <Github size={22} />
             </a>
             <a href="https://www.linkedin.com/in/lancegabrielmasigon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <Linkedin size={14} />
+              <Linkedin size={22} />
             </a>
           </div>
           <div className="hero-year">© 2026</div>
