@@ -1,0 +1,204 @@
+/* ─── EXPERIENCE ───────────────────────────────── */
+.experience-section {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: clamp(2.5rem, 5vh, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+/* Horizontal rule top */
+.experience-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Background label */
+.experience-bg-label {
+  position: absolute;
+  top: clamp(2rem, 5vh, 4rem);
+  right: -0.04em;
+  transform: none;
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 22vw, 22rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 237, 230, 0.13);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.06em;
+}
+
+/* Section number */
+.experience-section-num {
+  position: absolute;
+  top: clamp(4.5rem, 8vh, 6.5rem);
+  right: clamp(1.5rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  z-index: 3;
+}
+
+.experience-section-num .section-index-num {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 237, 230, 0.35);
+  letter-spacing: 0.06em;
+}
+
+/* Layout */
+.experience-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left column */
+.experience-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.experience-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.experience-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--red);
+}
+
+.experience-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 2.5rem;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.experience-item {
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  border-left: 2px solid var(--red);
+  position: relative;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.experience-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.experience-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--cream);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.experience-company {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.experience-period {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem 0;
+}
+
+.experience-description {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style-position: outside;
+}
+
+.experience-description li {
+  margin-bottom: 0.6rem;
+}
+
+.experience-description li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .experience-section {
+    padding: clamp(3rem, 6vh, 5rem) clamp(1rem, 4vw, 1.5rem);
+  }
+  .experience-heading {
+    font-size: clamp(2.5rem, 13vw, 4rem);
+    margin-bottom: 2rem;
+  }
+  .experience-item {
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .experience-title {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+  .experience-description {
+    font-size: 0.9rem;
+  }
+}
