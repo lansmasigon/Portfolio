@@ -78,6 +78,39 @@ const AWARDS = [
     image: aifest,
     details: 'Secured 1st Runner-Up position at the National AI Fest AI Hackathon organized by DOST.',
     link: '#'
+  },
+  {
+    id: 7,
+    number: '07',
+    title: '🏅 Semi-Finalist',
+    organization: '1st Naga City Mayoral Hackathon - National',
+    year: 'JAN 2026',
+    location: 'Naga City',
+    image: null,
+    details: 'Semi-Finalist at the 1st Naga City Mayoral Hackathon - National held on January 11, 2026.',
+    link: '#'
+  },
+  {
+    id: 8,
+    number: '08',
+    title: '📋 Top 10 Finalist',
+    organization: 'DEPDEV: 2026 National Innovation Day HABI Workshop',
+    year: 'APR 2026',
+    location: 'Philippines',
+    image: null,
+    details: 'Top 10 Finalist at DEPDEV: 2026 National Innovation Day HABI Workshop held on April 27-29, 2026.',
+    link: '#'
+  },
+  {
+    id: 9,
+    number: '09',
+    title: '📈 Top 10 Regional Qualifier',
+    organization: 'DOST-TAPI: KNowmad Mobile Learning Lab (Western Visayas Leg)',
+    year: '2026',
+    location: 'Western Visayas',
+    image: null,
+    details: 'Top 10 Regional Qualifier at DOST-TAPI: KNowmad Mobile Learning Lab (Western Visayas Leg).',
+    link: '#'
   }
 ];
 
@@ -180,9 +213,11 @@ export default function Awards() {
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>×</button>
-            <div className="modal-image">
-              <img src={selectedAward.image} alt={selectedAward.title} />
-            </div>
+            {selectedAward.image && (
+              <div className="modal-image">
+                <img src={selectedAward.image} alt={selectedAward.title} />
+              </div>
+            )}
             <div className="modal-body">
               <div className="modal-year">{selectedAward.year}</div>
               <h2 className="modal-title">{selectedAward.title}</h2>
