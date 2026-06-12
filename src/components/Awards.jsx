@@ -6,6 +6,7 @@ import aifest from '../assets/aifest.jpg';
 import natpsc from '../assets/natpsc.jpg';
 import regpsc from '../assets/regpsc.jpg';
 import korea from '../assets/korea.jpg';
+import depdev from '../assets/Depdev.jpg';
 import openFolder from '../assets/open-folder.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -97,7 +98,7 @@ const AWARDS = [
     organization: 'DEPDEV: 2026 National Innovation Day HABI Workshop',
     year: 'APR 2026',
     location: 'Philippines',
-    image: null,
+    image: depdev,
     details: 'Top 10 Finalist at DEPDEV: 2026 National Innovation Day HABI Workshop held on April 27-29, 2026.',
     link: '#'
   },
