@@ -83,17 +83,6 @@ const AWARDS = [
   {
     id: 7,
     number: '07',
-    title: '🏅 Semi-Finalist',
-    organization: '1st Naga City Mayoral Hackathon - National',
-    year: 'JAN 2026',
-    location: 'Naga City',
-    image: null,
-    details: 'Semi-Finalist at the 1st Naga City Mayoral Hackathon - National held on January 11, 2026.',
-    link: '#'
-  },
-  {
-    id: 8,
-    number: '08',
     title: '📋 Top 10 Finalist',
     organization: 'DEPDEV: 2026 National Innovation Day HABI Workshop',
     year: 'APR 2026',
@@ -102,6 +91,18 @@ const AWARDS = [
     details: 'Top 10 Finalist at DEPDEV: 2026 National Innovation Day HABI Workshop held on April 27-29, 2026.',
     link: '#'
   },
+  {
+    id: 8,
+    number: '08',
+    title: '🏅 Semi-Finalist',
+    organization: '1st Naga City Mayoral Hackathon - National',
+    year: 'JAN 2026',
+    location: 'Naga City',
+    image: null,
+    details: 'Semi-Finalist at the 1st Naga City Mayoral Hackathon - National held on January 11, 2026.',
+    link: '#'
+  },
+ 
   {
     id: 9,
     number: '09',
