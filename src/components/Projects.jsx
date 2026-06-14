@@ -5,6 +5,8 @@ import attrition from '../assets/attritionrisk.png';
 import diasight from '../assets/diasight.png';
 import aether from '../assets/aether.png';
 import logsync from '../assets/logsync.png';
+import openFolder from '../assets/open-folder.png';
+import mystery from '../assets/mystery.png';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -33,8 +35,8 @@ function Projects() {
 
     const cards = Array.from(stage.querySelectorAll('.project-showcase-card'));
     const total = cards.length;
-    const cardW = 240;
-    const overlap = 28; // final overlap between cards
+    const cardW = 180;
+    const overlap = 40; // final overlap between cards
 
     // Compute each card's final X position relative to center
     // Cards spread from center outward
@@ -153,6 +155,30 @@ function Projects() {
         customClass: 'logsync-card',
         details:
           'LogSync AI transforms your GitHub commits into professional daily work journals. Map your coding activity to a standard 9-to-5 schedule with AI-powered descriptions.'
+      },
+      {
+        id: 7,
+        number: '07',
+        title: 'WVSU LF',
+        description: 'WVSULF is a peer-to-peer lost and found for West Visayas State University. It replaces the messy "Freedom Walls" with a structured, gamified system.',
+        technologies: ['TypeScript', 'Convex', 'Tailwind'],
+        image: openFolder,
+        link: '#',
+        customClass: 'wvsulf-card',
+        details:
+          'WVSULF is a peer-to-peer lost and found for West Visayas State University. It replaces the messy "Freedom Walls" with a structured, gamified system that uses Tailwind for a modern, mobile-first interface.'
+      },
+      {
+        id: 8,
+        number: '08',
+        title: 'Budget Buddy',
+        description: 'A personal finance management application that helps users track income and expenses, manage multiple wallets, and create budgets.',
+        technologies: ['Flutter', 'Convex'],
+        image: mystery,
+        link: '#',
+        customClass: 'budgetbuddy-card',
+        details:
+          'A personal finance management application that helps users track income and expenses, manage multiple wallets, create budgets, and monitor savings goals through an intuitive and data-driven platform.'
       }
     ],
     []
