@@ -1,11 +1,7 @@
 import { Suspense, useMemo, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, Html, Bounds, useBounds, Center } from '@react-three/drei';
+import { useGLTF, Environment, Html, Center } from '@react-three/drei';
 import * as THREE from 'three';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const KEYCAPS = [
   { label: 'React',      svgUrl: '/icons/react.svg',      color: '#4F5A6C' },
@@ -84,39 +80,12 @@ function Loader() {
   return <Html center><div style={{ color: 'rgba(242,237,230,0.5)', fontSize: '0.8rem', letterSpacing: '0.2em' }}>LOADING</div></Html>;
 }
 
-function AutoFit({ children }) {
-  const bounds = useBounds();
-  return <group ref={(r) => { if (r) bounds.refresh(r).fit(); }}>{children}</group>;
-}
-
-function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, assembled }) {
+function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, progressRef, isMobile }) {
   const groupRef = useRef();
   const [hovered, setHovered] = useState(false);
   const pressY = useRef(0);
 
   const scatter = SCATTER_OFFSETS[index];
-
-  // Animated progress: 0 = scattered, 1 = assembled
-  const progress = useRef(0);
-
-  useEffect(() => {
-    const obj = { p: 0 };
-    const tween = gsap.to(obj, {
-      p: 1,
-      duration: 1.2,
-      ease: 'power3.out',
-      delay: assembled ? index * 0.06 : 0,
-      paused: !assembled,
-      onUpdate: () => {
-        progress.current = obj.p;
-      },
-    });
-    if (assembled) tween.play();
-    else {
-      progress.current = 0;
-    }
-    return () => tween.kill();
-  }, [assembled, index]);
 
   const mesh = useMemo(() => {
     const tex = makeKeycapTexture(svgUrl, color);
@@ -138,23 +107,33 @@ function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, ass
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
-    const p = progress.current;
+    
+    // Use the progressRef passed from the ScrollTrigger, default to 1 if not present
+    const p = progressRef ? progressRef.current : 1;
+    
+    // Skip animation on mobile by forcing progress to 1
+    let smoothP = isMobile ? 1 : p;
+    
+    // Optional stagger mapping (uncomment to apply):
+    // const staggerStart = (index / KEYCAPS.length) * 0.3;
+    // const staggerEnd = staggerStart + 0.7;
+    // smoothP = THREE.MathUtils.clamp((p - staggerStart) / (staggerEnd - staggerStart), 0, 1);
 
     // Interpolate position from scatter to grid
     const [tx, ty, tz] = position;
-    groupRef.current.position.x = scatter.x + (tx - scatter.x) * p;
-    groupRef.current.position.z = scatter.z + (tz - scatter.z) * p;
+    groupRef.current.position.x = scatter.x + (tx - scatter.x) * smoothP;
+    groupRef.current.position.z = scatter.z + (tz - scatter.z) * smoothP;
 
     // Hover press animation on y
     const targetHoverY = hovered ? -3.5 : 0;
     pressY.current = THREE.MathUtils.lerp(pressY.current, targetHoverY, 1 - Math.pow(0.01, delta * 12));
     const scatterY = scatter.y;
-    groupRef.current.position.y = scatterY + (ty + pressY.current - scatterY) * p;
+    groupRef.current.position.y = scatterY + (ty + pressY.current - scatterY) * smoothP;
 
     // Interpolate rotation
-    groupRef.current.rotation.x = scatter.rx * (1 - p);
-    groupRef.current.rotation.y = scatter.ry * (1 - p);
-    groupRef.current.rotation.z = scatter.rz * (1 - p);
+    groupRef.current.rotation.x = scatter.rx * (1 - smoothP);
+    groupRef.current.rotation.y = scatter.ry * (1 - smoothP);
+    groupRef.current.rotation.z = scatter.rz * (1 - smoothP);
   });
 
   return (
@@ -174,52 +153,41 @@ function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, ass
   );
 }
 
-function KeycapGrid({ assembled }) {
+function KeycapGrid({ progressRef, isMobile }) {
   const { scene: baseScene } = useGLTF('/scene.gltf?v=4');
   return (
-    <Bounds fit clip observe margin={1.08}>
-      <AutoFit>
-        <Center>
-          <group rotation={[0.72, -0.52, 0]}>
-            {KEYCAPS.map((cap, i) => (
-              <SingleKeycap
-                key={cap.label}
-                index={i}
-                position={LOCAL_POSITIONS[i]}
-                svgUrl={cap.svgUrl}
-                color={cap.color}
-                emissive={cap.emissive}
-                baseScene={baseScene}
-                assembled={assembled}
-              />
-            ))}
-          </group>
-        </Center>
-      </AutoFit>
-    </Bounds>
+    <Center scale={0.08}>
+      <group rotation={[0.72, -0.52, 0]}>
+        {KEYCAPS.map((cap, i) => (
+          <SingleKeycap
+            key={cap.label}
+            index={i}
+            position={LOCAL_POSITIONS[i]}
+            svgUrl={cap.svgUrl}
+            color={cap.color}
+            emissive={cap.emissive}
+            baseScene={baseScene}
+            progressRef={progressRef}
+            isMobile={isMobile}
+          />
+        ))}
+      </group>
+    </Center>
   );
 }
 
-export default function KeycapModel() {
-  const [assembled, setAssembled] = useState(false);
-  const canvasWrapRef = useRef(null);
+export default function KeycapModel({ progressRef }) {
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const el = canvasWrapRef.current;
-    if (!el) return;
-
-    const st = ScrollTrigger.create({
-      trigger: el,
-      start: 'top 80%',
-      once: true,
-      onEnter: () => setAssembled(true),
-    });
-
-    return () => st.kill();
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
-    <div ref={canvasWrapRef} style={{ width: '100%', height: '100%', outline: 'none', border: 'none', borderWidth: 0, background: 'transparent' }}>
+    <div style={{ width: '100%', height: '100%', outline: 'none', border: 'none', borderWidth: 0, background: 'transparent' }}>
       <Canvas
         tabIndex={-1}
         camera={{ position: [0, 0, 10], fov: 40 }}
@@ -231,7 +199,7 @@ export default function KeycapModel() {
         <directionalLight position={[6, 14, 6]}  intensity={2.0} />
         <directionalLight position={[-6, 4, -4]} intensity={0.4} color="#dde8ff" />
         <Suspense fallback={<Loader />}>
-          <KeycapGrid assembled={assembled} />
+          <KeycapGrid progressRef={progressRef} isMobile={isMobile} />
           <Environment preset="apartment" />
         </Suspense>
       </Canvas>
@@ -240,4 +208,3 @@ export default function KeycapModel() {
 }
 
 useGLTF.preload('/scene.gltf?v=4');
-

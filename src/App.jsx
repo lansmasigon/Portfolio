@@ -1,57 +1,30 @@
 import './App.css'
-import Home from './components/Home'
-import About from './components/About'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Awards from './components/Awards'
 import { Analytics } from "@vercel/analytics/react"
-import { useEffect, useRef } from 'react'
+import Layout from './components/layout/Layout'
+
+// New Sections
+import HeroSection from './components/HeroSection'
+import AboutSection from './components/AboutSection'
+import JourneySection from './components/JourneySection'
+import TechStackSection from './components/TechStackSection'
+import ProjectsSection from './components/ProjectsSection'
+import AwardsSection from './components/AwardsSection'
+import FooterSection from './components/FooterSection'
 
 function App() {
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
-
-  useEffect(() => {
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
-
-    let mx = 0, my = 0;
-    let rx = 0, ry = 0;
-
-    const onMove = (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-    };
-
-    let raf;
-    const followRing = () => {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      raf = requestAnimationFrame(followRing);
-    };
-    raf = requestAnimationFrame(followRing);
-
-    window.addEventListener('mousemove', onMove);
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
-    <div className="app">
-      <Home />
-      <About />
-      <Experience />
-      <Projects />
-      <Awards />
-      <Analytics />
-    </div>
+    <Layout>
+      <div className="app bg-background text-text-primary">
+        <HeroSection />
+        <AboutSection />
+        <JourneySection />
+        <TechStackSection />
+        <ProjectsSection />
+        <AwardsSection />
+        <FooterSection />
+        <Analytics />
+      </div>
+    </Layout>
   )
 }
 

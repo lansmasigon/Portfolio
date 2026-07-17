@@ -1,79 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
+@import '@fontsource/dm-serif-display';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --ink: #080808;
-  --cream: #F2EDE6;
-  --red: #E8192C;
-  --red-dim: #a01020;
-  --muted: rgba(242, 237, 230, 0.45);
-  --border: rgba(242, 237, 230, 0.12);
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-serif: 'DM Serif Display', serif;
-  --font-body: 'Outfit', sans-serif;
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased overflow-x-hidden;
+  }
 }
 
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Lenis smooth scrolling defaults */
+html.lenis, html.lenis body {
+  height: auto;
 }
-
-canvas {
-  outline: none !important;
-  border: none !important;
-  border-width: 0 !important;
-  box-shadow: none !important;
-  display: block;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
-
-canvas:focus,
-canvas:focus-visible {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
-
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  background: var(--ink);
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
-
-body {
-  background: var(--ink);
-  color: var(--cream);
-  font-family: var(--font-body);
-  font-weight: 400;
-  line-height: 1.6;
-  min-width: 320px;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 { margin: 0; }
-p { margin: 0; }
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; margin: 0; padding: 0; }
-button { border: none; background: none; cursor: pointer; font-family: inherit; }
-img { display: block; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--ink); }
-::-webkit-scrollbar-thumb { background: var(--red); }
-
-/* Noise overlay on body */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.03;
+.lenis.lenis-scrolling iframe {
   pointer-events: none;
-  z-index: 9999;
 }
