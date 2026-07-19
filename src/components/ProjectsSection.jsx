@@ -139,10 +139,12 @@ export default function ProjectsSection() {
         className="flex flex-col md:flex-row h-full md:w-max"
       >
         {displayedProjects.map((project, index) => (
-          <div key={index} className="min-h-screen md:h-full w-full md:w-screen flex flex-col md:flex-row items-center justify-center p-6 md:p-8 shrink-0">
-            <div className="w-full h-full flex flex-col md:flex-row items-center justify-center bg-white/5 border border-white/10 rounded-3xl p-6 md:bg-transparent md:border-none md:rounded-none md:p-0 md:border-r md:border-border">
-              <div className="w-full md:w-1/2 p-4 md:p-8 order-2 md:order-1">
-              <h3 className="text-3xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-tight text-[#1944F1] mb-2">{project.title}</h3>
+          <div key={index} className="min-h-screen md:h-full w-full md:w-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 shrink-0">
+            <div className="w-full h-full flex flex-col md:flex-row items-center justify-center bg-white md:bg-transparent border border-gray-200 md:border-none rounded-3xl p-4 md:rounded-none md:p-0 md:border-r md:border-border">
+              <div className="w-full md:w-1/2 p-3 md:p-8 order-2 md:order-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-2xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-tight text-[#1944F1]">{project.title}</h3>
+              </div>
               <p className="text-lg md:text-2xl font-semibold uppercase tracking-widest text-gray-500 mb-4">{project.subtitle}</p>
               <p className="text-base md:text-lg text-text-secondary mb-4">{project.description}</p>
               

@@ -11,13 +11,15 @@ export default function TechStackSection() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768;
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=200%', // Increased scroll duration
-          pin: true,
-          scrub: 1, // Smooth scrubbing
+          end: isMobile ? '+=100%' : '+=200%', 
+          pin: !isMobile,
+          scrub: 1, 
         }
       });
       
@@ -40,10 +42,10 @@ export default function TechStackSection() {
   return (
     <section ref={sectionRef} id="tech" className="min-h-screen w-full pt-10 pb-10 flex flex-col items-center justify-center overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 text-center h-full flex flex-col">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight text-[#1944F1] mb-2 text-center shrink-0">
+        <h2 className="text-2xl md:text-5xl font-bold tracking-tight leading-tight text-[#1944F1] mb-8 md:mb-2 text-center shrink-0">
           Technologies Used
         </h2>
-        <div className="w-full flex-grow max-w-5xl mx-auto h-[400px] md:h-[600px]">
+        <div className="w-full flex-grow max-w-5xl mx-auto h-[250px] sm:h-[350px] md:h-[600px]">
           <KeycapModel progressRef={progressRef} />
         </div>
       </div>

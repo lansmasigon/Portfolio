@@ -156,7 +156,7 @@ function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, pro
 function KeycapGrid({ progressRef, isMobile }) {
   const { scene: baseScene } = useGLTF('/scene.gltf?v=4');
   return (
-    <Center scale={0.08}>
+    <Center scale={isMobile ? 0.095 : 0.08}>
       <group rotation={[0.72, -0.52, 0]}>
         {KEYCAPS.map((cap, i) => (
           <SingleKeycap
