@@ -152,7 +152,7 @@ export default function HeroSection() {
         <div className="w-full md:w-[55%] flex flex-col justify-center items-start pt-10 md:pt-0 pb-10 z-20">
           <h1 
             ref={headlineRef}
-            className="flex flex-col text-6xl sm:text-7xl md:text-[8rem] lg:text-[8rem] font-black text-[#1944F1] leading-[0.85] mb-6 tracking-[-0.05em]"
+            className="flex flex-col text-6xl sm:text-7xl md:text-[8rem] lg:text-[8rem] font-black text-[#1944F1] leading-[0.85] mb-4 md:mb-6 tracking-[-0.05em]"
           >
             {'WEBSITE PORTFOLIO'.split(' ').map((word, i) => (
               <span key={i} className="block word drop-shadow-sm">
@@ -161,43 +161,36 @@ export default function HeroSection() {
             ))}
           </h1>
           
-          <div ref={buttonsRef} className="flex flex-col items-start gap-8 mt-4">
-            <div className="flex flex-wrap items-center gap-6">
+          <div ref={buttonsRef} className="flex flex-col items-start gap-4 md:gap-8 mt-4">
+            <div className="flex flex-wrap items-center gap-3 md:gap-6">
               <a 
                 href="https://github.com/lansmasigon" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-800 hover:text-[#000298] transition-colors p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
+                className="text-gray-800 hover:text-[#000298] transition-colors p-2 md:p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
               >
-                <Github size={32} />
+                <Github size={24} className="md:w-8 md:h-8" />
               </a>
               <a 
                 href="https://linkedin.com/in/lancegabrielmasigon" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-800 hover:text-[#000298] transition-colors p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
+                className="text-gray-800 hover:text-[#000298] transition-colors p-2 md:p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
               >
-                <Linkedin size={32} />
+                <Linkedin size={24} className="md:w-8 md:h-8" />
               </a>
               <a 
                 href="mailto:lancemasigon@gmail.com" 
-                className="text-gray-800 hover:text-[#000298] transition-colors p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
+                className="text-gray-800 hover:text-[#000298] transition-colors p-2 md:p-3 hover:bg-blue-50 rounded-full border-2 border-gray-200 hover:border-[#000298]"
               >
-                <Mail size={32} />
+                <Mail size={24} className="md:w-8 md:h-8" />
               </a>
-            </div>
-            
-            <div className="flex items-center gap-3 text-gray-500 animate-bounce mt-4 absolute bottom-8 md:relative md:bottom-auto">
-              <span className="text-sm font-medium uppercase tracking-wider">Scroll to explore</span>
-              <div className="w-5 h-8 border-2 border-gray-400 rounded-full flex justify-center pt-1">
-                <div className="w-1 h-2 bg-gray-400 rounded-full"></div>
-              </div>
             </div>
           </div>
         </div>
 
         {/* Right Side: Character & Scene */}
-        <div className="w-full md:w-[45%] h-[50vh] md:h-screen relative flex items-end justify-center pointer-events-none md:-mb-20 perspective-1000 mt-8 md:mt-0">
+        <div className="w-full md:w-[45%] h-[40vh] md:h-screen relative flex items-end justify-center pointer-events-none md:-mb-20 perspective-1000 mt-4 md:mt-0">
           
           {/* Radial Glow */}
           <div 
@@ -242,6 +235,14 @@ export default function HeroSection() {
           </div>
         </div>
 
+      </div>
+
+      {/* Scroll to explore - positioned below character on mobile */}
+      <div className="absolute bottom-8 md:hidden left-1/2 -translate-x-1/2 flex items-center gap-3 text-gray-500 animate-bounce z-20">
+        <span className="text-xs font-medium uppercase tracking-wider">Scroll to explore</span>
+        <div className="w-5 h-8 border-2 border-gray-400 rounded-full flex justify-center pt-1">
+          <div className="w-1 h-2 bg-gray-400 rounded-full"></div>
+        </div>
       </div>
     </section>
   );
