@@ -62,7 +62,7 @@ export default function AboutSection() {
           
           {/* Left Side: Text */}
           <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
-            <h3 className="text-lg md:text-2xl font-semibold text-[#1944F1] mb-4 uppercase tracking-widest">
+            <h3 className="text-lg md:text-2xl xl:text-3xl font-semibold text-[#1944F1] mb-4 uppercase tracking-widest">
               Who is Lance?
             </h3>
             <p ref={textRef} className="text-3xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-tight text-gray-300">
