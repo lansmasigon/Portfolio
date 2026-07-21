@@ -2,13 +2,6 @@
 
 A modern, responsive one-page portfolio website built with React and Vite.
 
-## Features
-
-- 🏠 **Home Section** - Eye-catching hero section with call-to-action buttons
-- 💼 **Projects Section** - Showcase your work with project cards
-- 🏆 **Awards Section** - Display your achievements and recognition
-- 🛠️ **Tech Stack Carousel** - Interactive carousel showing your technologies
-- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
 
 ## Getting Started
 
