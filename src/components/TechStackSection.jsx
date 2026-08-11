@@ -32,7 +32,7 @@ export default function TechStackSection() {
           progressRef.current = proxy.p;
         }
       })
-      .to({}, { duration: 0.5 });
+      // Removed the empty space at the end to prevent the "pause" feeling while scrolling
     }, sectionRef);
 
     return () => ctx.revert();
