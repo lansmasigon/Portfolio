@@ -32,7 +32,6 @@ export default function TechStackSection() {
           progressRef.current = proxy.p;
         }
       })
-      // Add empty space at the end of the timeline to create a pause after animation finishes
       .to({}, { duration: 0.5 });
     }, sectionRef);
 
@@ -45,7 +44,7 @@ export default function TechStackSection() {
         <h2 className="text-2xl md:text-5xl font-bold tracking-tight leading-tight text-[#1944F1] mb-8 md:mb-2 text-center shrink-0">
           Technologies Used
         </h2>
-        <div className="w-full flex-grow max-w-5xl mx-auto h-[250px] sm:h-[350px] md:h-[600px]">
+        <div className="w-full flex-grow max-w-5xl mx-auto h-[20rem] sm:h-[22rem] md:h-[37.5rem]">
           <KeycapModel progressRef={progressRef} />
         </div>
       </div>

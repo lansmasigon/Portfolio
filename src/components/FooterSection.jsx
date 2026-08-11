@@ -58,11 +58,12 @@ export default function FooterSection() {
       </div>
 
       {/* Avatar positioned absolutely at the bottom with a negative offset */}
-      <div className="absolute -bottom-12 md:-bottom-32 left-1/2 -translate-x-1/2 w-full max-w-[300px] md:max-w-[800px] flex justify-center items-end z-10 pointer-events-none">
+      <div className="absolute -bottom-12 md:-bottom-32 left-1/2 -translate-x-1/2 w-full max-w-xs md:max-w-3xl flex justify-center items-end z-10 pointer-events-none will-change-transform">
         <img 
           ref={avatarRef}
           src={sleepingAvatar} 
-          alt="Sleeping character" 
+          alt="Sleeping character"
+          loading="lazy"
           className="w-full h-auto object-cover object-bottom drop-shadow-lg"
         />
       </div>

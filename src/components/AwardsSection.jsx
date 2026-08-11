@@ -189,24 +189,25 @@ export default function AwardsSection() {
         </div>
         
         {/* Mobile: Grid, Desktop: Absolute centered for fanning out */}
-        <div className="grid grid-cols-1 gap-8 md:flex md:justify-center md:items-start md:relative md:h-[380px] md:w-full">
+        <div className="grid grid-cols-1 gap-8 md:flex md:justify-center md:items-start md:relative md:h-96 md:w-full perspective-1000">
           {AWARDS.map((award, index) => (
             <div 
               key={award.id}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="award-card md:absolute md:w-[240px] md:h-[360px] group hover:!z-[60]"
+              className="award-card md:absolute md:w-60 md:h-[22.5rem] group hover:!z-[60] will-change-transform"
               style={{ zIndex: index }}
             >
               <div
-                className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:border-blue transition-all duration-300 cursor-pointer flex flex-col h-full md:shadow-xl md:group-hover:-translate-y-12 md:group-hover:scale-110 md:group-hover:shadow-2xl md:origin-bottom"
+                className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:border-blue transition-all duration-500 ease-out cursor-pointer flex flex-col h-full md:shadow-xl md:group-hover:-translate-y-8 md:group-hover:scale-105 md:group-hover:shadow-2xl md:origin-bottom"
                 onClick={() => setActiveAward(award)}
               >
                 {award.image ? (
                   <div className="h-48 w-full overflow-hidden bg-gray-100">
                     <img 
                       src={award.image} 
-                      alt={award.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      alt={award.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
                   </div>
                 ) : (
@@ -300,8 +301,8 @@ export default function AwardsSection() {
 
               {/* Right Side: Image */}
               {activeAward.image && (
-                <div className="w-full h-64 md:h-auto min-h-[250px] order-first md:order-last bg-gray-100">
-                  <img src={activeAward.image} alt={activeAward.title} className="w-full h-full object-cover" />
+                <div className="w-full h-64 md:h-auto min-h-64 order-first md:order-last bg-gray-100">
+                  <img src={activeAward.image} alt={activeAward.title} loading="lazy" className="w-full h-full object-cover" />
                 </div>
               )}
             </div>

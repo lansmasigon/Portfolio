@@ -1,9 +1,8 @@
 import { ReactLenis } from 'lenis/react';
-import CustomCursor from './CustomCursor';
 
 export default function Layout({ children }) {
   return (
-    <ReactLenis root>
+    <ReactLenis root options={{ lerp: 0.08, smoothWheel: true }}>
       <div 
         className="fixed inset-0 w-full h-full pointer-events-none z-0" 
         style={{ backgroundColor: '#F2F2F0' }}
@@ -17,7 +16,6 @@ export default function Layout({ children }) {
           }} 
         />
       </div>
-      <CustomCursor />
       <main className="relative z-10 overflow-hidden w-full min-h-screen">
         {children}
       </main>

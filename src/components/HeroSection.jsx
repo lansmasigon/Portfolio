@@ -195,7 +195,7 @@ export default function HeroSection() {
           {/* Radial Glow */}
           <div 
             ref={glowRef}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full aspect-square max-w-[600px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full aspect-square max-w-2xl"
             style={{
               background: 'radial-gradient(circle, rgba(165,215,252,.25), transparent 70%)',
               borderRadius: '50%'
@@ -205,11 +205,12 @@ export default function HeroSection() {
           {/* Character Image */}
           <div 
             ref={characterRef} 
-            className="relative z-10 w-full max-w-[500px] transform-style-3d -translate-y-20 md:-translate-y-21"
+            className="relative z-10 w-full max-w-lg transform-style-3d -translate-y-20 md:-translate-y-24 will-change-transform"
           >
             <img 
               src={beanbagImg} 
               alt="Lance sitting on a beanbag" 
+              fetchpriority="high"
               className="w-full h-auto drop-shadow-2xl object-contain object-bottom"
             />
           </div>

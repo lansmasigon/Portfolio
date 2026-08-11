@@ -136,10 +136,14 @@ export default function ProjectsSection() {
     >
       <div 
         ref={wrapperRef}
-        className="flex flex-col md:flex-row h-full md:w-max"
+        className="flex flex-col md:flex-row h-full md:w-max will-change-transform"
       >
+        {/* Projects will be rendered here */}
         {displayedProjects.map((project, index) => (
-          <div key={index} className="min-h-screen md:h-full w-full md:w-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 shrink-0">
+          <div key={index} className="min-h-screen md:h-full w-full md:w-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 shrink-0 relative overflow-hidden">
+            {/* Extremely subtle background accent based on index */}
+            <div className={`absolute inset-0 opacity-[0.02] pointer-events-none -z-10 bg-gradient-to-br ${index % 2 === 0 ? 'from-blue-500 to-transparent' : 'from-transparent to-blue-500'}`} />
+            
             <div className="w-full h-full flex flex-col md:flex-row items-center justify-center bg-white md:bg-transparent border border-gray-200 md:border-none rounded-3xl p-4 md:rounded-none md:p-0 md:border-r md:border-border">
               <div className="w-full md:w-1/2 p-3 md:p-8 order-2 md:order-1">
               <div className="flex items-center gap-2 mb-2">
@@ -176,6 +180,7 @@ export default function ProjectsSection() {
                 <img 
                   src={project.image} 
                   alt={`${project.title} interface`} 
+                  loading="lazy"
                   className={`max-w-full max-h-full object-contain rounded-2xl drop-shadow-2xl ${project.title === 'DiaTrack' ? 'scale-[2.5] md:scale-[5.5] translate-y-4' : ''}`}
                 />
               </div>
@@ -186,7 +191,7 @@ export default function ProjectsSection() {
 
         {/* Final Slide: See All Projects */}
         {!showAllProjects && (
-          <div className="min-h-[50vh] md:h-full w-full md:w-[400px] flex flex-col items-center justify-center p-8 shrink-0">
+          <div className="min-h-[50vh] md:h-full w-full md:w-96 flex flex-col items-center justify-center p-8 shrink-0">
             <button 
               onClick={() => setShowAllProjects(true)}
               className="group relative flex flex-col items-center justify-center p-12 bg-white/50 backdrop-blur-md border border-white/20 rounded-3xl shadow-xl hover:shadow-2xl hover:bg-white/80 hover:-translate-y-2 transition-all duration-300 w-full cursor-pointer outline-none"

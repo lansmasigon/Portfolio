@@ -26,6 +26,14 @@ const LOCAL_POSITIONS = Array.from({ length: ROWS * COLS }, (_, i) => [
   (Math.floor(i / COLS) - (ROWS - 1) / 2) * STEP_Z,
 ]);
 
+// Mobile grid layout (2 columns instead of 4)
+const MOBILE_COLS = 2, MOBILE_ROWS = 6;
+const MOBILE_POSITIONS = Array.from({ length: MOBILE_ROWS * MOBILE_COLS }, (_, i) => [
+  (i % MOBILE_COLS - (MOBILE_COLS - 1) / 2) * STEP_X,
+  0,
+  (Math.floor(i / MOBILE_COLS) - (MOBILE_ROWS - 1) / 2) * STEP_Z,
+]);
+
 // Random scatter offsets — large, chaotic initial positions
 const SCATTER_OFFSETS = LOCAL_POSITIONS.map((_, i) => ({
   x: (Math.random() - 0.5) * 280,
@@ -156,7 +164,7 @@ function SingleKeycap({ index, position, svgUrl, color, emissive, baseScene, pro
 function KeycapGrid({ progressRef, isMobile }) {
   const { scene: baseScene } = useGLTF('/scene.gltf?v=4');
   return (
-    <Center scale={isMobile ? 0.095 : 0.08}>
+    <Center scale={isMobile ? 0.075 : 0.08}>
       <group rotation={[0.72, -0.52, 0]}>
         {KEYCAPS.map((cap, i) => (
           <SingleKeycap
@@ -191,6 +199,7 @@ export default function KeycapModel({ progressRef }) {
       <Canvas
         tabIndex={-1}
         camera={{ position: [0, 0, 10], fov: 40 }}
+        dpr={[1, 1.5]}
         style={{ width: '100%', height: '100%', background: 'transparent', outline: 'none', border: 'none', borderWidth: 0, display: 'block' }}
         gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
         onCreated={({ gl }) => { gl.domElement.style.outline = 'none'; gl.domElement.style.border = 'none'; gl.domElement.setAttribute('tabindex', '-1'); }}

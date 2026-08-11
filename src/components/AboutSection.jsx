@@ -96,11 +96,12 @@ export default function AboutSection() {
           </div>
           
           {/* Right Side: Image */}
-          <div className="w-full md:w-1/2 flex justify-center md:justify-center relative h-[60vh] md:h-[95vh]">
+          <div className="w-full md:w-1/2 flex justify-center md:justify-center relative h-[60vh] md:h-[95vh] will-change-transform">
             <img 
               ref={imageRef}
               src={standingImg} 
-              alt="Avatar standing" 
+              alt="Avatar standing"
+              loading="lazy"
               className="h-full w-auto object-contain drop-shadow-2xl scale-110 md:scale-110"
             />
           </div>

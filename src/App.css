@@ -3,7 +3,7 @@
   max-width: 100vw;
   overflow-x: hidden;
   position: relative;
-  background: var(--ink);
+  background: transparent;
 }
 
 #root {
