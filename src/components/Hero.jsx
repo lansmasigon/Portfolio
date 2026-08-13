@@ -12,9 +12,6 @@ export default function Hero() {
           <div className="role" style={{ margin: 0, marginTop: '8px' }}>Full-Stack Developer</div>
         </div>
       </div>
-      <p className="tagline reveal" style={{ marginTop: '24px' }}>
-        I build simple, clean, and user-friendly websites while continuously learning new technologies.
-      </p>
       <div className="btn-row reveal">
         <a className="btn primary" href="mailto:lancemasigon@gmail.com">Get in touch</a>
         <a className="icon-link" href="https://github.com/lansmasigon" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
