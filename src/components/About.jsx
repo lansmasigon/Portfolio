@@ -6,7 +6,7 @@ export default function About() {
       <div className="eyebrow mono reveal">About</div>
       <div className="about-grid">
         <div className="reveal">
-          <p>I am a Fullstack Developer with a deep interest in UI/UX design. I enjoy building simple, clean, and user-friendly websites while continuously learning new technologies.</p>
+          <p>I am a <span className="highlight-circle">Fullstack Developer</span> with a deep interest in UI/UX design. I enjoy building simple, clean, and user-friendly websites while continuously learning new technologies.</p>
           <p>When I'm not coding, I am exploring new ways to enhance standard development processes with modern tooling and design practices.</p>
         </div>
         <div className="reveal about-img-wrap" style={{ display: 'flex', justifyContent: 'center', marginTop: '-30px' }}>
