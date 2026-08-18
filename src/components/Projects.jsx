@@ -144,7 +144,7 @@ export default function Projects() {
       {projects.length > 4 && (
         <div className="reveal" style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
           <button className="btn primary" onClick={() => setShowAll(!showAll)}>
-            {showAll ? 'Show less' : 'View all projects →'}
+            {showAll ? 'Show less' : 'See all projects ↓'}
           </button>
         </div>
       )}
