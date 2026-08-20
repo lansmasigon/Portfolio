@@ -5,8 +5,8 @@ import hospitalImg from '../assets/hospital.png';
 import attritionriskImg from '../assets/attritionrisk.png';
 import aetherImg from '../assets/aether.png';
 import logsyncImg from '../assets/logsync.png';
-// Using mystery for RenalSight and other placeholders for now as no explicit renal-sight.png is in assets
 import mysteryImg from '../assets/mystery.png';
+import ghostImg from '../assets/ghost.png';
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
@@ -37,6 +37,14 @@ export default function Projects() {
       technologies: ["React", "Convex"],
       link: "https://renal-sight.vercel.app/",
       image: mysteryImg
+    },
+    {
+      title: "PhantomWake",
+      subtitle: "Maritime intelligence for dark vessel search corridors",
+      description: "A maritime intelligence system that uses AI to predict search corridors for dark vessels and enhance maritime monitoring. Phantom Wake reads satellite radar that doesn't need a vessel's cooperation. Global Fishing Watch already flags every ship as matched or dark. We turn that flag into three tools: a playback map, a predicted path, and a hotspot ledger.",
+      technologies: ["TypeScript", "Convex"],
+      link: "#",
+      image: ghostImg
     },
     {
       title: "Capiz Doctor's Hospital",
